@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    showCategories()
-    showProducts()
+    showCategories();
+    showProducts();
+    showReviews();  
 })
 
 function showCategories() {
@@ -14,6 +15,26 @@ function showCategories() {
 }
 
 //todo: implement showProducts method
+function showProducts() {
+    $.get( "/products", function( data ) {
+        var html = ''
+        data.forEach(function(products) {
+            html = html + '<li><a href="#" onClick="showProducts('+products.id+')">'+products.name+'</a></li>'
+        })
+        $('#products').html(html)
+    });
+}
+
+function showReviews() {
+    $.get( "/reviews", function( data ) {
+        var html = ''
+        data.forEach(function(reviews) {
+            html = html + '<li><a href="#" onClick="showReviews('+reviews.id+')">'+reviews.name+'</a></li>'
+        })
+        $('#reviews').html(html)
+    });
+}
+
 function showProducts(categoryId) {
     if(categoryId) {
         var url = '/categories/'+ categoryId +'/products';
@@ -27,7 +48,7 @@ function showProducts(categoryId) {
                 html = html + '<div class="product">'
                   +  '<h2>'+product.name+'</h2>'
                   +  '<p>'+product.description+'</p>'
-                  +  '<p>Pret: '+product.pret+'</p>'
+                  +  '<p>Pret: '+product.price+'</p>'
                   +  '<p>Categorie: '+product.category.name+'</p>'
                 + '</div>';
                 
@@ -41,8 +62,6 @@ function showProducts(categoryId) {
                         }
                     )
                 }
-                
-                
             }
         )
         $('#content').html(html);
