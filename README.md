@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # bdsa-product-catalog
 
 # git clone
@@ -44,3 +45,6 @@ exit
 node server.js
 ```
 
+=======
+# afaceri_electronice
+>>>>>>> 61a4a263f8eeb0188beddb3cad6536fd9d7981a7
